@@ -23,7 +23,8 @@ d3.svg.singleArc = function() {
     d3_svg_arcOffset = -Math.PI / 2;
 
   function arc() {
-    var r0 = radius.apply(this, arguments),
+      var da;
+      var r0 = radius.apply(this, arguments),
       a0 = startAngle.apply(this, arguments) + d3_svg_arcOffset,
       a1 = endAngle.apply(this, arguments) + d3_svg_arcOffset,
       da = (a1 < a0 && (da = a0, a0 = a1, a1 = da), a1 - a0),
