@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: 140characters.com
+  name: 140Characters
+  host: 140Characters
+  disk_quota: 1024M
+  services:
+  - 140Characters-personality_insights
