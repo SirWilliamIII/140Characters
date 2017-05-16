@@ -12,6 +12,9 @@ function run() {
 
         e.preventDefault();
 
+
+
+
         var $input = $('input').val();
         var $proxy = 'http://galvanize-twitter-proxy.herokuapp.com/';
 
@@ -27,6 +30,7 @@ function run() {
                 }
             }
         });
+        $('#bg').slideUp();
     });
 
 
