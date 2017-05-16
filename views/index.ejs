@@ -119,15 +119,31 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
+
+
+        <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-auth.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDUifjYb-iHsUlk4rP6HiXonBO-dGrKNEI",
+                authDomain: "characters-d5c5c.firebaseapp.com",
+                databaseURL: "https://characters-d5c5c.firebaseio.com",
+                projectId: "characters-d5c5c",
+                storageBucket: "characters-d5c5c.appspot.com",
+                messagingSenderId: "73314514804"
+            };
+            firebase.initializeApp(config);
+        </script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
-  <script type="text/javascript" src="/js/demo.js"></script>
-  <script type="text/javascript" src="/js/personality.js"></script>
-  <script type="text/javascript" src="/js/string-utils.js"></script>
-  <script type="text/javascript" src="/js/i18n.js"></script>
-  <script type="text/javascript" src="/js/textsummary.js"></script>
+  <script type="text/javascript" src="../public/js/demo.js"></script>
+  <script type="text/javascript" src="../public/js/personality.js"></script>
+  <script type="text/javascript" src="../public/js/string-utils.js"></script>
+  <script type="text/javascript" src="../public/js/i18n.js"></script>
+  <script type="text/javascript" src="../public/js/textsummary.js"></script>
   <script type="text/javascript">
     textSummary.init('json');
   </script>
