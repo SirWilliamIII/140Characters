@@ -1,141 +1,43 @@
-# Personality Insights Nodejs Starter Application
+# Q1 Project Proposal
 
-  The IBM Watson [Personality Insights][service_url] service uses linguistic analysis to extract cognitive and social characteristics from input text such as email, text messages, tweets, forum posts, and more. By deriving cognitive and social preferences, the service helps users to understand, connect to, and communicate with other people on a more personalized level.
+**Personality Insights with Twitter and Watson**
 
-Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
+## Project Description
+Utilizing the Twitter API in conjunction with the IBM Watson API,
+this app analyzes a person's character traits based on tweets they had sent.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/personality-insights-nodejs)
+## The problem this app helps solve :
+  * The need for a visual representation of **non-biased personality data**.
+  * Useful for vetting potential employees using non-traditional metrics.
+  * A useful tool for anyone that would like to gain data-driven insight of another.
 
-## Getting Started
+## Who has this problem?
+  * Hiring staffs who rely on old technologies who are in need of another source of vetting. 
+  * Anyone can use the app to have fun searching for friends or celebrities and seeing how Watson analyzes their personality  traits.
+  * Untrusting individuals that demand insight on others outside of typical interactions.
 
-1. Create a Bluemix Account
+## How will your project solve this problem?
+By analyzing past comments, tweets, blogs, etc... the data cannot be manipulated and the person being analyzed cannot tinker their behavior or actions to influence the results. 
 
-  [Sign up][sign_up] in Bluemix, or use an existing account. Watson Services in Beta are free to use.
+## What inputs does it need?
+The twitter handle of an account that has made at least one tweet. Albeit due to the extremely small sample size, the results would be highly innacurate. Watson needs around 3500-6000 words of text before the results begin to converge to an accurate model of one's character traits. The text should ideally contain words about every day experiences, thoughts, and responses.
 
-2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool
+## What outputs does it produce?
+When the text has been loaded, clicking the **analyze** button will query watson and show the results both in raw data and in a visual representation.
 
-3. Edit the `manifest.yml` file and change the `<application-name>` to something unique.
-  ```none
-applications:
-- services:
-  - personality-insights
-  name: <application-name>
-  command: node app.js
-  path: .
-  memory: 256M
-  ```
-  The name you use will determinate your application url initially, e.g. `<application-name>.mybluemix.net`.
+## What web API(s) will it use?
+Twitter and IBM Watson
 
-4. Connect to Bluemix in the command line tool
-  ```sh
-  $ cf api https://api.ng.bluemix.net
-  $ cf login -u <your user ID>
-  ```
+## What technologies do you plan to use?
+- JavaScript
+- IBM Watson Developer Cloud
+- Node
+- Express
+- Bootstrap
+- Git
 
-5. Create the Personality Insights service in Bluemix
-
-  ```sh
-  $ cf create-service personality_insights tiered personality-insights-service-standard
-  ```
-
-6. Push it live!
-
-  ```sh
-  $ cf push
-  ```
-
-See the full [Getting Started][getting_started] documentation for more details, including code snippets and references.
-
-## Running locally
-  The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/) so you will have to download and install them as part of the steps below.
-
-1. Copy the credentials from your `personality-insights-service` service in Bluemix to `app.js`, you can see the credentials using:
-
-    ```sh
-    $ cf env <application-name>
-    ```
-    Example output:
-    ```sh
-    System-Provided:
-    {
-    "VCAP_SERVICES": {
-      "personality_insights": [{
-          "credentials": {
-            "url": "<url>",
-            "password": "<password>",
-            "username": "<username>"
-          },
-        "label": "personality_insights",
-        "name": "personality-insights-service",
-        "plan": "IBM Watson Personality Insights Monthly Plan"
-     }]
-    }
-    }
-    ```
-
-    You need to copy `username`, `password` and `url`.
-
-2. Install [Node.js](http://nodejs.org/)
-3. Go to the project folder in a terminal and run:
-    `npm install`
-4. Start the application
-5.  `node app.js`
-6. Go to `http://localhost:3000`
-
-## i18n Support
-
-  The application has i18n support and is available in English and 
-  Spanish. The language is automatically selected from the browser's
-  locale.
-  
-  To add a new translation follow the steps below:
-  
-  1. Translating the static text:
-  	1. Locate the `en.json` file present in the `i18n` directory. This 
-       file includes all the messages and labels in English.
-  	1. Copy `en.json` and name the new file with the format `ll-CC.json` or 
-       `ll.json`, where `ll` is the language code and `CC` is the country 
-       code. For example, a new translation for argentinian Spanish would 
-       be named after `es-AR.json`. You may omit the country code to make 
-       the translation global for the language.
-	1. Translate each English string to the desired language and save it.
-  1. Translating the personality summary:
-  	1. Locate the JSON files present in `public/json/` directory.
-  	   These are:
-	     * `facets.json`
-	     * `needs.json`
-	     * `summary.json`
-	     * `traits.json`
-	     * `values.json`
-	1. Copy each file and name it with the format `<filename>_ll-CC.json`
-	   or `<filename>_ll-CC.json`. For example, a Portuguese language
-           translations for `facets.json` will result in a new file named 
-           `facets_pt.json`, an UK English translation for `traits.json` will
-           result in a new file named `traits_en-UK.json`.
-	1. Translate all the strings present in the new files to the desired
-	   language and save them.
-
-## Troubleshooting
-
-To troubleshoot your Bluemix app the main useful source of information are the logs, to see them, run:
-
-  ```sh
-  $ cf logs <application-name> --recent
-  ```
-
-## License
-
-  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).  
-  This sample code uses d3 and jQuery, both distributed under MIT license.
-
-## Contributing
-
-  See [CONTRIBUTING](CONTRIBUTING.md).
-
-## Open Source @ IBM
-  Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
-
-[service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html
-[cloud_foundry]: https://github.com/cloudfoundry/cli
-[getting_started]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/getting_started/
-[sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
+## Feature list
+* Custom professional design (including layout, navigation, header/footer, styles, formatting, text field, graph, logo, etc...)
+* A text summary explaining the analysis
+* A text response summarizing Watson's analysis
+* A graphical representation of the data
