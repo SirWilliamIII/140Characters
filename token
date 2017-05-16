@@ -1,0 +1,1 @@
+{ "code" : 403 , "error" : "Forbidden" , "description" : "2017-05-15T20:30:20-04:00, Error ERCD-NOCONFIG occurred when accessing https://127.0.0.1:8443/personality-insights/api/watson-auth-token?Client-IP=71.211.210.180;Client-CN=;, Tran-Id: stream-dp01-60477422 - " } 

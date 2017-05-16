@@ -1,0 +1,53 @@
+body, html {
+    height: 100%;
+}
+
+#bg {
+    /* The image used */
+    background-image: url("../img/bg.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#title {
+    font-family: "Avenir Next Demi Bold", "DejaVu Sans", serif;
+    color: rgba(255,255,255,0.87);
+    margin-top: 20px;
+    padding: 20px;
+    letter-spacing: 35px;
+    text-align: center;
+    font-size: 60px;
+
+}
+
+#subtitle {
+    font-family: "Avenir Next Condensed Bold", "DejaVu Sans", serif;
+    color: rgba(255,255,255,0.87);
+    letter-spacing: 25px;
+    font-size: 20px;
+}
+
+
+#main {
+    font-family: "Avenir Next", "DejaVu Sans", serif;
+    color: rgba(255,255,255,0.87);
+    margin-right: 10px;
+}
+
+
+
+.vertical-center-item {
+    color: white;
+    margin-right: 10px;
+    margin-top: 200px;
+}
+
+
+
+
