@@ -1,69 +1,21 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html lang="en-US">
+
 <head>
+    <title>Personality Insights</title>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="ct" content="<%= ct %>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-grid.css">
-    <link rel="stylesheet" href="css/bootstrap-reboot.css">
+    <meta name="ct" content="<%= ct %>">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/watson-bootstrap-dark.css">
     <link rel="stylesheet" href="css/banner.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/mdb.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
-
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
+
 <body>
-<div class="container-fluid" id="bg">
-    <div class="row">
-        <div class="col-md-12">
-            <div id="title">
-                140CHARACTERS<br>
-                <span id="subtitle">TWITTER PERSONALITY ANALYZER</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 offset-3">
-            <div class="vertical-center-item">
-                <em>https://twitter/user_stream/whatever</em>
-                <input type="text" name="text-field" id="input" value="" />
-            </div>
-        </div>
-
-        <div class="col-md-1">
-            <div class="vertical-center-item">
-                <a href="#" id="submit">
-                    <img src="img/logo.png" width="64" height="64" id="logo" />
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" >
-        <div class="col-md-6 offset-md-3">
-            <ul id="tweets" style="color: #222;">
-
-            </ul>
-        </div>
-    </div>
-</div>
-
-
-<!--                                                 -->
-
-
 <div class="well">
     <div class="form-group row">
         <div style="padding:0px;" class="col-lg-12 col-xs-12">
@@ -82,7 +34,7 @@
                     </label>
                 </div>
             </div>
-            <textarea rows="12" required="true" name="text" placeholder="" class="content form-control" id="data"></textarea>
+            <textarea rows="12" required="true" name="text" placeholder="Please enter English text to analyze (minimum of 100 words)..." class="content form-control"></textarea>
             <div class="text-right wordsCountFootnote">
                 <span class="wordsCount small"></span>
                 <span class="small"> words</span>
@@ -170,15 +122,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-auth.js"></script>
@@ -193,12 +136,6 @@
 <script type="text/javascript">
     textSummary.init('json');
 </script>
-
-
-
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-<script src="js/mdb.js"></script>
-<script src="js/main.js"></script>
 </body>
+
 </html>
