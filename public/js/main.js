@@ -25,12 +25,17 @@ function run() {
             success: function (data) {
                 for(var index in data) {
                     var text = data[index].text;
-                    $('#tweets').append(text);
+                    $('#data').append(text);
                     console.log(data.length);
                 }
             }
         });
         $('#bg').slideUp();
+
+
+
+
+
     });
 
 
