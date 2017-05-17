@@ -45,16 +45,29 @@ function run() {
 
     $('.analysis-btn').click(function (e) {
         e.preventDefault();
+        var data = {
+            contentItems: [{
+                content: $data.val().replace(/#/g, '')
+            }]
+            // 'raw_scores': false,
+            // 'csv_headers': false,
+            // 'consumption_preferences': false,
+            // 'version': '2016-10-20',
+            // 'content_items': [{
+            //     'content': $data.val().substr(0, 15000)
+            // }]
+        };
+        console.log(data);
+
         $.ajax({
-            headers: {
-                'contentItems': [{
-                    'content': $data.val()
-                }]
-            },
+            data: JSON.stringify(data),
             type: 'POST',
-            url: 'https://watson-api-explorer.mybluemix.net/personality-insights/api/v2/profile?raw_scores=false&csv_headers=false&consumption_preferences=false&version=2016-10-20',
+            url: 'https://galvanize-cors-proxy.herokuapp.com/https://watson-api-explorer.mybluemix.net/personality-insights/api/v2/profile?raw_scores=false&csv_headers=false&consumption_preferences=false&version=2016-10-20',
             dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            headers: {'Content-Language': 'en'},
             success: function (response) {
+                console.log(response);
                 if (response.error) {
                     showError(response.error);
                 } else {
@@ -65,25 +78,14 @@ function run() {
 
             },
             error: function (xhr) {
-                $loading.hide();
-
-                var error;
-                try {
-                    error = JSON.parse(xhr.responseText || {});
-                } catch (e) {
-                }
-
-                if (xhr && xhr.status === 429) {
-                    $captcha.css('display', 'table');
-                    $('.errorMsg').css('color', 'black');
-                    error.error = 'Complete the captcha to proceed';
-                } else {
-                    $('.errorMsg').css('color', 'red');
-                }
+              //  $loading.hide();
+                console.log(xhr);
 
             }
         });
     });
+
+
     function showTraits(data) {
         console.log('showTraits()');
         $traits.show();
@@ -286,11 +288,6 @@ function run() {
         f(tree, 0);
         return arr;
     }
-
-    function inputData(data) {
-
-    }
-
         $('.clear-btn').click(function () {
             $('.clear-btn').blur();
             $data.val('');
