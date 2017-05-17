@@ -8,19 +8,17 @@
     <meta name="ct" content="<%= ct %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="css/watson-bootstrap-dark.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
     <link rel="stylesheet" href="css/bootstrap-reboot.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/watson-bootstrap-dark.css">
     <link rel="stylesheet" href="css/banner.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mdb.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
-
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -37,7 +35,7 @@
     <div class="row">
         <div class="col-md-6 offset-3">
             <div class="vertical-center-item">
-                <em>https://twitter/user_stream/whatever</em>
+                <em>Enter a Twitter handle</em>
                 <input type="text" name="text-field" id="input" value="" />
             </div>
         </div>
@@ -45,13 +43,13 @@
         <div class="col-md-1">
             <div class="vertical-center-item">
                 <a href="#" id="submit">
-                    <img src="img/logo.png" width="64" height="64" id="logo" />
+                    <img src="img/logo.png" width="64" height="64" id="btn" />
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="row" >
+    <div class="row">
         <div class="col-md-6 offset-md-3">
             <ul id="tweets" style="color: #222;">
 
@@ -61,43 +59,29 @@
 </div>
 
 
-<!--                                                 -->
+<!--                            HIDDEN Until click                    -->
 
+<div id="hidden-page" class="hidden">
 
-<div class="well">
-    <div class="form-group row">
-        <div style="padding:0px;" class="col-lg-12 col-xs-12">
-            <label class="col-lg-6 col-md-6 col-xs-6 control-label">Choose Language:</label>
-            <div class="col-lg-6 col-md-6 col-xs-6 sample-radio-list">
-                <div class="sample-radio-container">
-                    <label>
-                        <input id="english_radio" type="radio" name="sample_text" value="en" checked class="sample-radio">
-                        <span>English</span>
-                    </label>
-                </div>
-                <div class="sample-radio-container">
-                    <label>
-                        <input type="radio" name="sample_text" value="es" class="sample-radio">
-                        <span>Spanish</span>
-                    </label>
+    <div class="well">
+        <div class="form-group row">
+            <div style="padding:0px;" class="col-lg-12 col-xs-12">
+                <textarea rows="12" name="text" class="content form-control" id="data"></textarea>
+                <div class="text-right wordsCountFootnote">
+                    <span class="wordsCount small"></span>
+                    <span class="small"> words</span>
                 </div>
             </div>
-            <textarea rows="12" required="true" name="text" placeholder="" class="content form-control" id="data"></textarea>
-            <div class="text-right wordsCountFootnote">
-                <span class="wordsCount small"></span>
-                <span class="small"> words</span>
+        </div>
+        <div class="form-group row buttons-container">
+            <div class="col-lg-4 col-xs-4">
+                <button type="button" class="btn btn-blue-grey clear-btn">Clear</button>
+            </div>
+            <div class="col-lg-4 col-lg-push-4 col-xs-4 col-xs-push-4">
+                <button type="button" class="btn btn-blue-grey analysis-btn">Analyze</button>
             </div>
         </div>
     </div>
-    <div class="form-group row buttons-container">
-        <div class="col-lg-4 col-xs-4">
-            <button type="button" class="btn btn-block clear-btn">Clear</button>
-        </div>
-        <div class="col-lg-4 col-lg-push-4 col-xs-4 col-xs-push-4">
-            <button type="button" class="btn btn-block analysis-btn">Analyze</button>
-        </div>
-    </div>
-</div>
 </div>
 <div class="col-lg-6 col-md-12 col-xs-12">
     <div style="display:none;" class="form-group row loading text-center loading">
@@ -185,7 +169,6 @@
 <script src="js/firebase.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
-<script type="text/javascript" src="js/demo.js"></script>
 <script type="text/javascript" src="js/personality.js"></script>
 <script type="text/javascript" src="js/string-utils.js"></script>
 <script type="text/javascript" src="js/i18n.js"></script>
