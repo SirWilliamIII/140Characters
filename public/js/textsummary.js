@@ -2,6 +2,7 @@
  * Copyright 2015 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
+ *
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,25 +15,22 @@
  * limitations under the License.
  */
 
-'use strict';
+
 /* global format:false */
 /**
  * Provides a Text Summary for profiles.
  */
-var textSummary = (function (provider, translatorFactory) {
 
-  var self = {
-      jsonPath : 'json'
-  };
 
-  // Download all static data.
-  self.circumplexData = {};
-  self.facetsData = {};
-  self.valuesData = {};
-  self.needsData = {};
+(function TextSummary() {
+
+     var self = {
+        jsonPath : '../json'
+    };
+
 
   // i18n
-  var tphrase = translatorFactory.createTranslator({}); // for phrases
+
 
   /**
    * Load summary data and translations.
@@ -40,29 +38,31 @@ var textSummary = (function (provider, translatorFactory) {
   self.loadSummaryData = function () {
 
     console.log('Requesting summary translations');
-    provider.getJson(self.jsonPath, 'summary',
+
+
+    $.getJson(self.jsonPath, 'summary',
       function(summaryTranslations) {
         tphrase = translatorFactory.createTranslator(summaryTranslations['phrase']);
       }
     );
 
-    provider.getJson(self.jsonPath, 'traits',
+    $.getJson(self.jsonPath, 'traits',
       function(response) {
         self.circumplexData = response;
       });
 
-    provider.getJson(self.jsonPath, 'facets',
+    $.getJson(self.jsonPath, 'facets',
       function(response) {
         self.facetsData = response;
       });
 
 
-    provider.getJson(self.jsonPath, 'values',
+    $.getJson(self.jsonPath, 'values',
       function(response) {
         self.valuesData = response;
       });
 
-    provider.getJson(self.jsonPath, 'needs',
+    $.getJson(self.jsonPath, 'needs',
       function(response) {
         self.needsData = response;
       });
@@ -402,4 +402,6 @@ var textSummary = (function (provider, translatorFactory) {
 
   return self;
 
-})(i18nProvider, i18nTranslatorFactory);
+}());
+
+

@@ -77,11 +77,11 @@ var visutil = {
   }
 };
 
-var renderChart = function() {
+function renderChart() {
   if (!this.data) {
     this.showError();
     return;
-  }
+   }
   if (this.vis) {
     console.error('Cannot render: Already rendered (this.vis)');
     return;

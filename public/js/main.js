@@ -1,13 +1,6 @@
-var api = {
-    consumer_key: 'j4KcgvPO5bm3fIDOiVYSS18sR',
-    consumer_secret: '0SoE4DfJIpOO1udF3125YDZFmErkJmxngj9ljNrZUOHOZPo0bX',
-    access_token: '794113952498257925-3HZW4LSB1X9poXiPrKCuM96TBIfePQi',
-    access_token_secret: '9hhMd7U0xkkJvoltKWlqy8dwGtq2VZzN3joZ8hW7u9rIR'
-
-};
 var widgetId = 'vizcontainer', // Must match the ID in index.jade
-    widgetWidth = 700, widgetHeight = 700, // Default width and height
-    personImageUrl = 'images/app.png', // Can be blank
+    widgetWidth = 1000, widgetHeight = 1000, // Default width and height
+    personImageUrl = '', // Can be blank
     language = 'en'; // language selection
 
 // Jquery variables
@@ -15,10 +8,7 @@ var $content = $('.content'),
     $loading   = $('.loading'),
     $error     = $('.error'),
     $errorMsg  = $('.errorMsg'),
-    $traits    = $('.traits'),
-    $captcha   = $('.captcha'),
-    $data      = $('#data');
-
+    $traits    = $('.traits');
 
 function run() {
 
@@ -31,34 +21,27 @@ function run() {
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                for (var index in data) {
-                    var text = data[index].text;
-                    $data.append(text);
+                for (let index in data) {
+                    let results_text = data[index].text;
+                    $content.append(results_text);
                     console.log(data.length);
                 }
+                updateWordCount();
             }
         });
         $('#bg').slideUp();
         $('#hidden-page').removeClass('hidden');
-    });
 
+    });
 
     $('.analysis-btn').click(function (e) {
         e.preventDefault();
-        var data = {
-            contentItems: [{
-                content: $data.val().replace(/#/g, '')
-            }]
-            // 'raw_scores': false,
-            // 'csv_headers': false,
-            // 'consumption_preferences': false,
-            // 'version': '2016-10-20',
-            // 'content_items': [{
-            //     'content': $data.val().substr(0, 15000)
-            // }]
-        };
-        console.log(data);
 
+        let data = {
+            contentItems: [{
+                content: $content.val().replace(/#/g, '')
+            }]
+        };
         $.ajax({
             data: JSON.stringify(data),
             type: 'POST',
@@ -67,18 +50,20 @@ function run() {
             contentType: "application/json; charset=utf-8",
             headers: {'Content-Language': 'en'},
             success: function (response) {
-                console.log(response);
                 if (response.error) {
                     showError(response.error);
                 } else {
-                    showTraits(response);
+                    console.log(response);
+                    $loading.hide();
+                    showVisualization(response);
+                    //showTraits(response);
                     showTextSummary(response);
-                    showVizualization(response);
-                }
+                    $('#hidden-graph').removeClass('hidden');
 
+                }
             },
             error: function (xhr) {
-              //  $loading.hide();
+
                 console.log(xhr);
 
             }
@@ -86,56 +71,16 @@ function run() {
     });
 
 
-    function showTraits(data) {
-        console.log('showTraits()');
-        $traits.show();
 
-        var traitList = flatten(data.tree),
-            table     = $traits;
 
-        table.empty();
 
-        // Header
-        $('#header-template').clone().appendTo(table);
 
-        // For each trait
-        for (var i = 0; i < traitList.length; i++) {
-            var elem = traitList[i];
 
-            var Klass = 'row';
-            Klass += (elem.title) ? ' model_title' : ' model_trait';
-            Klass += (elem.value === '') ? ' model_name' : '';
-
-            if (elem.value !== '') { // Trait child name
-                $('#trait-template').clone()
-                    .attr('class', Klass)
-                    .find('.tname')
-                    .find('span').html(elem.id).end()
-                    .end()
-                    .find('.tvalue')
-                    .find('span').html(elem.value === '' ? '' : elem.value)
-                    .end()
-                    .end()
-                    .appendTo(table);
-            } else {
-                // Model name
-                $('#model-template').clone()
-                    .attr('class', Klass)
-                    .find('.col-lg-12')
-                    .find('span').html(elem.id).end()
-                    .end()
-                    .appendTo(table);
-            }
-        }
-    }
-
-    /**
-     * Construct a text representation for big5 traits crossing, facets and
-     * values.
-     */
     function showTextSummary(data) {
         console.log('showTextSummary()');
-        var paragraphs = textSummary.assemble(data.tree);
+        var textContent;
+        var paragraphs = textContent.assemble(data.tree);
+
         var div = $('.summary-div');
         $('.outputMessageFootnote').text(data.word_count_message ? '**' + data.word_count_message + '.' : '');
         div.empty();
@@ -144,7 +89,7 @@ function run() {
         });
     }
 
-    function showVizualization(theProfile) {
+    function showVisualization(theProfile) {
         $('#' + widgetId).empty();
         var d3vis   = d3.select('#' + widgetId)
                 .append('svg:svg'),
@@ -290,21 +235,23 @@ function run() {
     }
         $('.clear-btn').click(function () {
             $('.clear-btn').blur();
-            $data.val('');
-            updateWordsCount();
+            $content.val('');
+            updateWordCount();
         });
+
+
+    function countWords(str) {
+        return str.split(' ').length;
+    }
+
+    function updateWordCount() {
+        $('.wordsCount').text(countWords($content.val()));
+    }
 
         /**
          * Update words count on change
          */
-        $content.change(updateWordsCount);
-
-        /**
-         * Update words count on copy/past
-         */
-        $content.bind('paste', function () {
-            setTimeout(updateWordsCount, 100);
-        });
+        $content.change(updateWordCount);
 
 
 
