@@ -22,19 +22,8 @@
  */
 
 
-(function TextSummary() {
+function TextSummary(self){
 
-     var self = {
-        jsonPath : '../json'
-    };
-
-
-  // i18n
-
-
-  /**
-   * Load summary data and translations.
-   */
   self.loadSummaryData = function () {
 
     console.log('Requesting summary translations');
@@ -402,6 +391,6 @@
 
   return self;
 
-}());
+};
 
 

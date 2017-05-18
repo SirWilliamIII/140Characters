@@ -1,14 +1,14 @@
-var widgetId = 'vizcontainer', // Must match the ID in index.jade
+var widgetId                         = 'vizcontainer', // Must match the ID in index.jade
     widgetWidth = 1000, widgetHeight = 1000, // Default width and height
-    personImageUrl = '', // Can be blank
-    language = 'en'; // language selection
+    personImageUrl                   = '', // Can be blank
+    language                         = 'en'; // language selection
 
 // Jquery variables
-var $content = $('.content'),
-    $loading   = $('.loading'),
-    $error     = $('.error'),
-    $errorMsg  = $('.errorMsg'),
-    $traits    = $('.traits');
+var $content  = $('.content'),
+    $loading  = $('.loading'),
+    $error    = $('.error'),
+    $errorMsg = $('.errorMsg'),
+    $traits   = $('.traits');
 
 function run() {
 
@@ -34,8 +34,10 @@ function run() {
 
     });
 
+
     $('.analysis-btn').click(function (e) {
         e.preventDefault();
+        $('#gif').removeClass('hidden');
 
         let data = {
             contentItems: [{
@@ -54,33 +56,20 @@ function run() {
                     showError(response.error);
                 } else {
                     console.log(response);
-                    $loading.hide();
                     showVisualization(response);
-                    //showTraits(response);
-                    showTextSummary(response);
+                    $('#gif').addClass('hidden');
                     $('#hidden-graph').removeClass('hidden');
-
                 }
             },
             error: function (xhr) {
-
                 console.log(xhr);
-
             }
         });
     });
 
-
-
-
-
-
-
     function showTextSummary(data) {
         console.log('showTextSummary()');
-        var textContent;
-        var paragraphs = textContent.assemble(data.tree);
-
+        var paragraphs = assemble(data.tree);
         var div = $('.summary-div');
         $('.outputMessageFootnote').text(data.word_count_message ? '**' + data.word_count_message + '.' : '');
         div.empty();
@@ -233,11 +222,12 @@ function run() {
         f(tree, 0);
         return arr;
     }
-        $('.clear-btn').click(function () {
-            $('.clear-btn').blur();
-            $content.val('');
-            updateWordCount();
-        });
+
+    $('.clear-btn').click(function () {
+        $('.clear-btn').blur();
+        $content.val('');
+        updateWordCount();
+    });
 
 
     function countWords(str) {
@@ -248,19 +238,18 @@ function run() {
         $('.wordsCount').text(countWords($content.val()));
     }
 
-        /**
-         * Update words count on change
-         */
-        $content.change(updateWordCount);
+    /**
+     * Update words count on change
+     */
+    $content.change(updateWordCount);
 
 
-
-        // $('#input').keypress(function (event) {
-        //     if (event.which == 13) {
-        //         event.preventDefault();
-        //         $('#submit').click();
-        //     }
-        // });
+    // $('#input').keypress(function (event) {
+    //     if (event.which == 13) {
+    //         event.preventDefault();
+    //         $('#submit').click();
+    //     }
+    // });
 
 }
 

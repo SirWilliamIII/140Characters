@@ -5,19 +5,27 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>140 Characters</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-grid.css">
         <link rel="stylesheet" href="css/bootstrap-reboot.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/mdb.css">
         <link rel="stylesheet" href="css/main.css">
+        <style>
+            @font-face {
+                font-family: "Avenir Next";
+            }
+
+            body {
+                font-family: "Avenir Next";
+            }
+        </style>
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-    <div class="container-fluid" id="bg">
+    <div class="container-fluid" id="bg" onload="run();">
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div id="title">
@@ -65,6 +73,9 @@
                 <div class="col-lg-4 col-xs-4">
                     <button type="button" class="btn btn-blue-grey clear-btn">Clear</button>
                 </div>
+                <div class="col-lg-4 col-xs-4">
+                    <img src="img/loading-indicator1.gif" alt="" id="gif" class="hidden">
+                </div>
                 <div class="col-lg-4 col-lg-4 col-xs-4 col-xs-4">
                     <button type="button" class="btn btn-blue-grey analysis-btn">Analyze</button>
                 </div>
@@ -74,7 +85,7 @@
         <!--      RESULTS     -->
 
     <div class="col-lg-6 col-md-12 col-xs-12">
-            <div class="results hidden">
+            <div class="results">
                 <h2>Your Personality*</h2>
                 <div class="well">
                     <div class="summary-div"></div>
@@ -109,6 +120,7 @@
     <script src="js/firebase.js"></script>
     <script src="js/components/dictionary.alone.js"></script>
     <script src="js/components/summary.alone.js"></script>
+    <script src="js/components/tooltips.alone.js"></script>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
