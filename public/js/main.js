@@ -67,17 +67,6 @@ function run() {
         });
     });
 
-    function showTextSummary(data) {
-        console.log('showTextSummary()');
-        var paragraphs = assemble(data.tree);
-        var div = $('.summary-div');
-        $('.outputMessageFootnote').text(data.word_count_message ? '**' + data.word_count_message + '.' : '');
-        div.empty();
-        paragraphs.forEach(function (sentences) {
-            $('<p></p>').text(sentences.join(' ')).appendTo(div);
-        });
-    }
-
     function showVisualization(theProfile) {
         $('#' + widgetId).empty();
         var d3vis   = d3.select('#' + widgetId)
@@ -103,8 +92,7 @@ function run() {
                 if (d.id) {
                     this.tooltip.target = d3event.currentTarget;
                     console.debug('[showTooltip]');
-                    var
-                        tooltip     = demo.getTooltip(d.id.replace('_parent', '')),
+                    var tooltip     = demo.getTooltip(d.id.replace('_parent', '')),
                         tooltipText = d.name + ' (' + d.category + '): ' + tooltip.msg;
                     console.debug(tooltipText);
                     this.tooltip.element

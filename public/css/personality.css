@@ -13,23 +13,27 @@
 }
 
 .sector_leaf_text{
-	font-family:Arial;
+	font-family:"Avenir Next";
 	font-weight: 500;
+    color: #fff;
 }
 
 .sector_nonleaf_text{
 	font-family:Arial;
 	font-weight: 500;
+    color: #fff;
 }
 
 .sector_nonleaf_text:hover{
 	font-weight: 600;
+    color: #fff;
 }
 
 .personalityWidget .information {
 	text-align: center;
-	margin-top: 25%;
+	
 	height: 100%;
+    color: #fff;
 }
 
 .personalityWidget .error img {

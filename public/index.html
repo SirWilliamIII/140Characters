@@ -1,71 +1,85 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>140 Characters</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/bootstrap-grid.css">
-        <link rel="stylesheet" href="css/bootstrap-reboot.css">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/mdb.css">
-        <link rel="stylesheet" href="css/main.css">
-        <style>
-            @font-face {
-                font-family: "Avenir Next";
-            }
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>140 Characters</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/mdb.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        @font-face {
+            font-family: "Avenir Next";
+        }
 
-            body {
-                font-family: "Avenir Next";
-            }
-        </style>
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-    <div class="container-fluid" id="bg" onload="run();">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div id="title">
-                    140CHARACTERS<br>
-                    <span id="subtitle">TWITTER PERSONALITY ANALYZER</span>
-                </div>
-            </div>
-        </div>
+        body {
+            font-family: "Avenir Next";
+        }
+         #gif {
+             position: fixed;
+             background: rgba(0,0,0,0.8);
+             top: 0;
+             left: 0;
+         }
+        .hide {
+            display: none;
+        }
 
-        <div class="row">
-            <div class="col-md-6 offset-3 col-sm-6">
-                <div class="vertical-center-item">
-                    <em>Enter a Twitter handle</em>
-                    <input type="text" name="text-field" id="input" value="" />
-                </div>
-            </div>
-
-            <div class="col-md-1 col-sm-2">
-                <div class="vertical-center-item">
-                    <a href="#" id="submit">
-                        <img src="img/logo.png" width="64" height="64" id="btn"/>
-                    </a>
-                </div>
+    </style>
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<div class="container-fluid" id="bg" onload="run();">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div id="title">
+                140CHARACTERS<br>
+                <span id="subtitle">TWITTER PERSONALITY ANALYZER</span>
             </div>
         </div>
     </div>
-    <!--                            Top Disappears                        -->
+
+    <div class="row">
+        <div class="col-md-6 offset-3 col-sm-6">
+            <div class="vertical-center-item">
+                <em>Enter a Twitter handle</em>
+                <input type="text" name="text-field" id="input" value=""/>
+            </div>
+        </div>
+
+        <div class="col-md-1 col-sm-2">
+            <div class="vertical-center-item">
+                <a href="#" id="submit">
+                    <img src="img/logo.png" width="64" height="64" id="btn"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--                            Top Disappears                        -->
 
 
-    <!--                            HIDDEN Until click                    -->
-
-    <div id="hidden-page" class="container hidden">
+<!--
+                            HIDDEN Until click                    -->
+<div class="container-fluid" id="bg-2">
         <div class="well">
             <div class="form-group row">
                 <div class="col-lg-12 col-xs-12">
-                    <textarea rows="12" name="text" class="content form-control" id="content">
+                    <textarea name="styled-textarea" class="content form-control" onfocus="this.value=''; setbg('#e5fff3');"  id="content" style="color:white;">
                     </textarea>
+
+
+
+
                     <div class="text-right wordsCountFootnote">
-                        <span class="wordsCount small"></span>
-                        <span class="small"> words</span>
+                        <span class="wordsCount small" style="color: #fff;"></span>
+                        <span class="small" style="color: #fff;"> words</span>
                     </div>
                 </div>
             </div>
@@ -74,9 +88,9 @@
                     <button type="button" class="btn btn-blue-grey clear-btn">Clear</button>
                 </div>
                 <div class="col-lg-4 col-xs-4">
-                    <img src="img/loading-indicator1.gif" alt="" id="gif" class="hidden">
+                    <img src="img/loading-indicator1.gif" alt="" id="gif" class="hide">
                 </div>
-                <div class="col-lg-4 col-lg-4 col-xs-4 col-xs-4">
+                <div class="col-lg-4 col-xs-4 col-xs-4 pull-right">
                     <button type="button" class="btn btn-blue-grey analysis-btn">Analyze</button>
                 </div>
             </div>
@@ -84,53 +98,33 @@
 
         <!--      RESULTS     -->
 
-    <div class="col-lg-6 col-md-12 col-xs-12">
-            <div class="results">
-                <h2>Your Personality*</h2>
-                <div class="well">
-                    <div class="summary-div"></div>
-                    <div style="color: gray" class="text-right">
-                        <em class="small">*Compared to most people who participated in our surveys.</em>
-                    </div>
-                    <div style="color: gray" class="text-right">
-                        <em class="small outputMessageFootnote"></em>
-                    </div>
-                </div>
-            </div>
-
-
         <div class="results ">
             <div class="row">
-                <div class="col-lg-5 col-md-12 col-xs-12">
-                    <h3>Data Behind Your Personality</h3>
-                    <div class="col555px well traits"></div>
-                </div>
-                <div class="col-lg-7 col-xs-12 col-md-12">
-                    <h3>Visualization of Personality Data</h3>
+                <div class="col-lg-8 offset-1 col-xs-12 col-md-12">
                     <div id="vizcontainer" class="well"></div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+</div>
 
-    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-auth.js"></script>
-    <script src="js/firebase.js"></script>
-    <script src="js/components/dictionary.alone.js"></script>
-    <script src="js/components/summary.alone.js"></script>
-    <script src="js/components/tooltips.alone.js"></script>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/textsummary.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-auth.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/components/dictionary.alone.js"></script>
+<script src="js/components/summary.alone.js"></script>
+<script src="js/components/tooltips.alone.js"></script>
 
-    <script type="text/javascript" src="js/personality.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/textsummary.js"></script>
 
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    <script src="js/mdb.js"></script>
-    <script src="js/main.js"></script>
-    </body>
+<script type="text/javascript" src="js/personality.js"></script>
+
+<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="js/mdb.js"></script>
+<script src="js/main.js"></script>
+</body>
 </html>

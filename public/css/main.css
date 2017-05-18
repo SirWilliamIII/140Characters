@@ -8,6 +8,17 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
+
+}
+
+#bg-2 {
+    background-image: url("../img/bg-2.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    overflow: auto;
 }
 
 #title {
@@ -37,11 +48,20 @@ body, html {
     margin-right: 10px;
 }
 
-.hidden {
+#hidden-page {
     display: none !important;
     visibility: hidden !important;
 }
 
+textarea#content {
+    width: 600px;
+    height: 120px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: Tahoma, sans-serif;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 .vertical-center-item {
     color: white;
@@ -49,6 +69,7 @@ body, html {
     margin-top: 100px;
 }
 
-
-
-
+#gif {
+    position: absolute;
+    background: url('./../img/loading-indicator1.gif') no-repeat center center;
+}
