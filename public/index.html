@@ -24,8 +24,8 @@
          #gif {
              position: fixed;
              background: rgba(0,0,0,0.8);
-             top: 40%;
-             left: 50%;
+             top: 60%;
+             left: 45%;
          }
         .hide {
             display: none;
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="col-md-1 col-sm-1">
+        <div class="col-md-1 col-sm-1 col-xs-6">
             <div class="vertical-center-item">
                 <a href="#" id="submit">
                     <img src="img/logo.png" width="64" height="64" id="btn"/>
@@ -70,8 +70,8 @@
 <div class="container-fluid" id="bg-2">
         <div class="well">
             <div class="form-group row">
-                <div class="col-lg-8 offset-lg-2 col-md-8 col-xs-8">
-                    <textarea name="styled-textarea" class="content form-control" id="content" style="color:white; overflow: hidden">
+                <div class="col-md-8 offset-md-2 col-xs-8">
+                    <textarea name="styled-textarea" class="content form-control" id="content" style="color:white; font-size: 14px; overflow: hidden; background-color: ##85A5BA;">
                     </textarea>
 
 
@@ -79,21 +79,21 @@
             </div>
 
             <div class="form-group row buttons-container">
-                <div class="col-lg-3 offset-3 col-xs-4">
-                    <button type="button" class="btn btn-transparent" id="clear-btn">Clear</button>
+                <div class="col-lg-3 offset-lg-3 col-md-4 col-xs-6">
+                    <button type="button" class="btn btn-outline-danger" id="clear-btn">Clear</button>
                 </div>
                 <div class="text-center wordsCountFootnote">
-                    <span class="wordsCount small" style="color: #fff;"></span>
-                    <span class="small" style="color: #fff;"> words</span>
+                    <span class="wordsCount small" style="color: #fff; font-size: 16px;"></span>
+                    <span class="small" style="color: #fff; font-size: 16px"> words</span>
                 </div>
-                <div class="col-lg-3 offset-2 col-md-4 col-xs-4">
-                    <button type="button" class="btn btn-transparent" id="analysis-btn">Analyze</button>
+                <div class="col-lg-3 offset-lg-1 col-md-4 col-xs-6">
+                    <button type="button" class="btn btn-outline-success" id="analysis-btn">Analyze</button>
                 </div>
             </div>
             <div>
-                <!--<div class="col-lg-2 offset-5 col-xs-4">-->
-                    <!--<img src="./img/loading-indicator.gif" alt="" id="gif" class="hide">-->
-                <!--</div>-->
+                <div class="col-xs-4">
+                    <img src="./img/page-loader.gif" alt="" id="gif" class="hide" width="128" height="128">
+                </div>
 
             </div>
         </div>
@@ -102,7 +102,7 @@
 
         <div class="results ">
             <div class="row">
-                <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-xs-12">
+                <div class="col-md-8 offset-md-2 col-sm-12 col-xs-12">
                     <div id="vizcontainer" class="well"></div>
                 </div>
             </div>

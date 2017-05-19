@@ -2,6 +2,7 @@
 
 .personalityWidget {
 /*	border: 1px dotted blue;*/
+    color: white;
 }
 
 .personalityWidget svg circle {
@@ -13,15 +14,17 @@
 }
 
 .sector_leaf_text{
+    color: #fff;
 	font-family:"Avenir Next";
 	font-weight: 500;
-    color: #fff;
+
 }
 
 .sector_nonleaf_text{
-	font-family:Arial;
-	font-weight: 500;
     color: #fff;
+	font-family:"Avenir Next";
+	font-weight: 500;
+
 }
 
 .sector_nonleaf_text:hover{

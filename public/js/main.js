@@ -41,7 +41,7 @@ function run() {
 
         let data = {
             contentItems: [{
-                content: $content.val().replace(/[^A-Za-z0-9_]/g, '')
+                content: $content.val()
             }]
         };
         $.ajax({
