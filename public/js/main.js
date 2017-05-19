@@ -1,5 +1,5 @@
 var widgetId                         = 'vizcontainer', // Must match the ID in index.jade
-    widgetWidth = 1000, widgetHeight = 1000, // Default width and height
+    widgetWidth = 900, widgetHeight = 900, // Default width and height
     personImageUrl                   = '', // Can be blank
     language                         = 'en'; // language selection
 
@@ -35,13 +35,13 @@ function run() {
     });
 
 
-    $('.analysis-btn').click(function (e) {
+    $('#analysis-btn').click(function (e) {
         e.preventDefault();
-        $('#gif').removeClass('hidden');
+        $('#gif').removeClass('hide');
 
         let data = {
             contentItems: [{
-                content: $content.val().replace(/#/g, '')
+                content: $content.val().replace(/[^A-Za-z0-9_]/g, '')
             }]
         };
         $.ajax({
@@ -57,7 +57,7 @@ function run() {
                 } else {
                     console.log(response);
                     showVisualization(response);
-                    $('#gif').addClass('hidden');
+                    $('#gif').addClass('hide');
                     $('#hidden-graph').removeClass('hidden');
                 }
             },
@@ -211,8 +211,8 @@ function run() {
         return arr;
     }
 
-    $('.clear-btn').click(function () {
-        $('.clear-btn').blur();
+    $('#clear-btn').click(function () {
+        $('#clear-btn').blur();
         $content.val('');
         updateWordCount();
     });
