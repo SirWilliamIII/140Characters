@@ -1,66 +1,68 @@
-const widgetId                         = 'vizcontainer', // Must match the ID in index.jade
+var widgetId                         = 'vizcontainer', // Must match the ID in index.jade
     widgetWidth = 900, widgetHeight = 900, // Default width and height
     personImageUrl                   = '', // Can be blank
     language                         = 'en'; // language selection
 
 // Jquery variables
-const $content  = $('.content');
+var $content  = $('.content');
 
 function run() {
-    $('#btn').click(e => {
-        e.preventDefault();
-        const $input = $('input').val();
-        const $proxy = 'https://galvanize-twitter-proxy.herokuapp.com/';
-        $.ajax({
-            url: $proxy + 'statuses/user_timeline.json?count=200&screen_name=' + $input,
-            type: 'GET',
-            dataType: 'json',
-            success: data => {
-                for (let i in data) {
-                    let results_text = data[i].text;
-                    $content.append(results_text);
-                    console.log(data.length);
-                }
-                updateWordCount();
-            }
-        });
-        $('#bg').slideUp();
-        $('#hidden-page').removeClass('hidden');
+	$('#btn').click(function (e) {
+		e.preventDefault();
+		var $input = $('input').val();
+		var $proxy = 'https://galvanize-twitter-proxy.herokuapp.com/';
+		$.ajax({
+			url: $proxy + 'statuses/user_timeline.json?count=200&screen_name=' + $input,
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				for (var index in data) {
+					var results_text = data[index].text;
+					$content.append(results_text);
+					console.log(data.length);
+				}
+				updateWordCount();
+			}
+		});
 
-    });
+		$('#bg').slideUp();
+		$('#hidden-page').removeClass('hidden');
 
-    $('#analysis-btn').click( e => {
-        e.preventDefault();
-        $('#gif').removeClass('hide');
+	});
 
-        let data = {
-            contentItems: [{
-                content: $content.val()
-            }]
-        };
-        $.ajax({
-            data: JSON.stringify(data),
-            type: 'POST',
-            url: 'https://galvanize-cors-proxy.herokuapp.com/https://watson-api-explorer.mybluemix.net/personality-insights/api/v2/profile?raw_scores=false&csv_headers=false&consumption_preferences=false&version=2016-10-20',
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            headers: {'Content-Language': 'en'},
-            success: function (response) {
-                if (response.error) {
-                    showError(response.error);
-                } else {
-                    console.log(response);
-                    showVisualization(response);
-                    $('#gif').addClass('hide');
-                    $('#hidden-graph').removeClass('hidden');
-                }
-            },
-            error: xhr => {
-            	console.log(xhr);
-            }
+	$('#analysis-btn').click(function (e) {
+		e.preventDefault();
+		$('#gif').removeClass('hide');
 
-        });
-    });
+		let data = {
+			contentItems: [{
+				content: $content.val()
+			}]
+		};
+		$.ajax({
+			data: JSON.stringify(data),
+			type: 'POST',
+			url: 'https://galvanize-cors-proxy.herokuapp.com/https://watson-api-explorer.mybluemix.net/personality-insights/api/v2/profile?raw_scores=false&csv_headers=false&consumption_preferences=false&version=2016-10-20',
+			dataType: 'json',
+			contentType: "application/json; charset=utf-8",
+			headers: {'Content-Language': 'en'},
+			success: function (response) {
+				if (response.error) {
+					showError(response.error);
+				} else {
+					console.log(response);
+					showVisualization(response);
+					$('#gif').addClass('hide');
+
+				}
+			},
+			error: function (xhr) {
+				console.log(xhr);
+			}
+
+		});
+	});
+}
 
     function showVisualization(theProfile) {
         $('#' + widgetId).empty();
@@ -121,7 +123,7 @@ function run() {
                     }
                 });
             },
-            collapseAll: () => {
+            collapseAll: function() {
                 this.vis.selectAll('g').each(() => {
                     var g = d3.select(this);
                     if (g.datum().parent !== null && // Isn't the root g object.
@@ -131,7 +133,7 @@ function run() {
                     }
                 });
             },
-            addPersonImage: url => {
+            addPersonImage: function(url) {
                 if (!this.vis || !url) {
                     return;
                 }
@@ -178,13 +180,13 @@ function run() {
         widget.expandAll.call(widget);
         if (personImageUrl)
             widget.addPersonImage.call(widget, personImageUrl);
-    }
+	}
 
     /**
      * Returns a 'flattened' version of the traits tree, to display it as a list
      * @return array of {id:string, title:boolean, value:string} objects
      */
-    function flatten(/*object*/ tree) {
+    function flatten(tree) {
         var arr = [],
             f   = function (t, level) {
                 if (!t) return;
@@ -233,6 +235,5 @@ function run() {
     //     }
     // });
 
-}
 
 run();
