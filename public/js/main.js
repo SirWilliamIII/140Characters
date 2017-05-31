@@ -1,23 +1,23 @@
-var widgetId                         = 'vizcontainer', // Must match the ID in index.jade
+const widgetId                         = 'vizcontainer', // Must match the ID in index.jade
     widgetWidth = 900, widgetHeight = 900, // Default width and height
     personImageUrl                   = '', // Can be blank
     language                         = 'en'; // language selection
 
 // Jquery variables
-var $content  = $('.content');
+const $content  = $('.content');
 
 function run() {
-    $('#btn').click(function (e) {
+    $('#btn').click(e => {
         e.preventDefault();
-        var $input = $('input').val();
-        var $proxy = 'https://galvanize-twitter-proxy.herokuapp.com/';
+        const $input = $('input').val();
+        const $proxy = 'https://galvanize-twitter-proxy.herokuapp.com/';
         $.ajax({
             url: $proxy + 'statuses/user_timeline.json?count=200&screen_name=' + $input,
             type: 'GET',
             dataType: 'json',
-            success: function (data) {
-                for (let index in data) {
-                    let results_text = data[index].text;
+            success: data => {
+                for (let i in data) {
+                    let results_text = data[i].text;
                     $content.append(results_text);
                     console.log(data.length);
                 }
@@ -29,8 +29,7 @@ function run() {
 
     });
 
-
-    $('#analysis-btn').click(function (e) {
+    $('#analysis-btn').click( e => {
         e.preventDefault();
         $('#gif').removeClass('hide');
 
@@ -56,15 +55,16 @@ function run() {
                     $('#hidden-graph').removeClass('hidden');
                 }
             },
-            error: function (xhr) {
-                console.log(xhr);
+            error: xhr => {
+            	console.log(xhr);
             }
+
         });
     });
 
     function showVisualization(theProfile) {
         $('#' + widgetId).empty();
-        var d3vis   = d3.select('#' + widgetId)
+        const d3vis   = d3.select('#' + widgetId)
                 .append('svg:svg'),
             tooltip = {
                 element: d3.select('body')
@@ -72,7 +72,7 @@ function run() {
                     .classed('tooltip', true),
                 target: undefined
             };
-        var widget = {
+        const widget = {
             d3vis: d3vis,
             tooltip: tooltip,
             data: theProfile,
@@ -87,7 +87,7 @@ function run() {
                 if (d.id) {
                     this.tooltip.target = d3event.currentTarget;
                     console.debug('[showTooltip]');
-                    var tooltip     = demo.getTooltip(d.id.replace('_parent', '')),
+                    const tooltip     = demo.getTooltip(d.id.replace('_parent', '')),
                         tooltipText = d.name + ' (' + d.category + '): ' + tooltip.msg;
                     console.debug(tooltipText);
                     this.tooltip.element
@@ -97,13 +97,13 @@ function run() {
 
                 d3event.stopPropagation();
             },
-            updateTooltipPosition: function (d3event) {
+            updateTooltipPosition: d3event => {
                 this.tooltip.element
                     .style('top', (d3event.pageY - 16) + 'px')
                     .style('left', (d3event.pageX - 16) + 'px');
                 d3event.stopPropagation();
             },
-            hideTooltip: function () {
+            hideTooltip: () => {
                 console.debug('[hideTooltip]');
                 this.tooltip.element
                     .classed('in', false)
@@ -111,8 +111,8 @@ function run() {
             },
             id: 'SystemUWidget',
             COLOR_PALLETTE: ['#1b6ba2', '#488436', '#d52829', '#F53B0C', '#972a6b', '#8c564b', '#dddddd'],
-            expandAll: function () {
-                this.vis.selectAll('g').each(function () {
+            expandAll: () => {
+                this.vis.selectAll('g').each(() => {
                     var g = d3.select(this);
                     if (g.datum().parent && // Isn't the root g object.
                         g.datum().parent.parent && // Isn't the feature trait.
@@ -121,8 +121,8 @@ function run() {
                     }
                 });
             },
-            collapseAll: function () {
-                this.vis.selectAll('g').each(function () {
+            collapseAll: () => {
+                this.vis.selectAll('g').each(() => {
                     var g = d3.select(this);
                     if (g.datum().parent !== null && // Isn't the root g object.
                         g.datum().parent.parent !== null && // Isn't the feature trait.
@@ -131,7 +131,7 @@ function run() {
                     }
                 });
             },
-            addPersonImage: function (url) {
+            addPersonImage: url => {
                 if (!this.vis || !url) {
                     return;
                 }
@@ -164,8 +164,8 @@ function run() {
             }
         };
 
-        d3vis.on("mousemove", function () {
-            if (d3.event.target.tagName != 'g') {
+        d3vis.on("mousemove", () => {
+            if (d3.event.target.tagName !== 'g') {
                 widget.hideTooltip();
             }
         });
@@ -206,7 +206,7 @@ function run() {
         return arr;
     }
 
-    $('#clear-btn').click(function () {
+    $('#clear-btn').click(() => {
         $('#clear-btn').blur();
         $content.val('');
         updateWordCount();
@@ -217,9 +217,8 @@ function run() {
         return str.split(' ').length;
     }
 
-    function updateWordCount() {
-        $('.wordsCount').text(countWords($content.val()));
-    }
+    updateWordCount =  () => $('.wordsCount').text(countWords($content.val()));
+
 
     /**
      * Update words count on change

@@ -1,41 +1,20 @@
 {
-  "name": "",
-  "version": "0.1.10",
-  "description": "A sample nodejs app for Bluemix that use the Personality Insights service",
-  "dependencies": {
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "body-parser": "^1.11.0",
-    "cfenv": "^1.0.x",
-    "cloudant": "^1.7.1",
-    "cookie-parser": "^1.4.0",
-    "csurf": "^1.8.3",
-    "dotenv": "^4.0.0",
-    "ejs": "^2.3.4",
-    "express": "^4.13.3",
-    "express-rate-limit": "^2.0.2",
-    "express-secure-only": "^0.2.1",
-    "gulp-babel": "^6.1.2",
-    "helmet": "^0.13.0",
-    "https": "^1.0.0",
-    "i18next": "^1.10.2",
-    "lodash": "^3.3.1",
-    "nconf": "^0.7.1",
-    "oauth": "^0.9.12",
-    "morgan": "^1.6.1",
-    "qs": "^2.4.1",
-    "request": "^2.65.0",
-    "twit": "^1.1.20",
-    "twitter": "^1.7.0",
-    "watson-developer-cloud": "^1.0.0-beta.1"
-  },
-  "engines": {
-    "node": ">=0.10"
-  },
-  "author": "Will Carpenter",
-  "license": "Apache-2.0",
+  "name": "nightwatch-starter",
+  "version": "1.0.0",
+  "description": "nightwatch starter kit with no dependency on Java or selenium",
   "scripts": {
-    "start": "node app.js"
+    "start": "gulp http-server",
+    "test": "gulp e2e-tests"
+  },
+  "main": "index.js",
+  "author": "w3cj <cj@null.computer>",
+  "license": "MIT",
+  "devDependencies": {
+    "chromedriver": "^2.29.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-nightwatch": "^0.3.2",
+    "nightwatch": "^0.9.15",
+    "run-sequence": "^1.2.2"
   }
 }
