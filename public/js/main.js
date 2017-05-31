@@ -4,14 +4,9 @@ var widgetId                         = 'vizcontainer', // Must match the ID in i
     language                         = 'en'; // language selection
 
 // Jquery variables
-var $content  = $('.content'),
-    $loading  = $('.loading'),
-    $error    = $('.error'),
-    $errorMsg = $('.errorMsg'),
-    $traits   = $('.traits');
+var $content  = $('.content');
 
 function run() {
-
     $('#btn').click(function (e) {
         e.preventDefault();
         var $input = $('input').val();
