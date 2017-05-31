@@ -71,7 +71,7 @@
         <div class="well">
             <div class="form-group row">
                 <div class="col-md-8 offset-md-2 col-xs-8">
-                    <textarea name="styled-textarea" class="content form-control" id="content" style="color:white; height: 400px; font-size: 18px; overflow: hidden; background-color: #85A5BA;" >
+                    <textarea name="styled-textarea" class="content form-control" id="content" style="color:white; height: 150px; font-size: 18px; overflow: hidden; background-color: #00FFFFFF; margin-top: 10px" >
                     </textarea>
 
 
@@ -87,7 +87,7 @@
                     <span class="small" style="color: #fff; font-size: 16px"> words</span>
                 </div>
                 <div class="col-lg-3 offset-lg-1 col-md-4 col-xs-6">
-                    <button type="button" class="btn btn-outline-success" id="analysis-btn">Analyze</button>
+                    <button onclick="scrollDown();" type="button" class="btn btn-outline-success" id="analysis-btn">Analyze</button>
                 </div>
             </div>
             <div>
@@ -108,6 +108,12 @@
             </div>
         </div>
 </div>
+<script>
+    function scrollDown() {
+        window.scrollTo(0, 100);
+    }
+
+</script>
 
 
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
